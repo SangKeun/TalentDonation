@@ -80,6 +80,16 @@ public class HttpClients {
 			return false;
 		}
 	}
+	
+	public String getResultString(String data, String key) {
+		try {
+			JSONObject json = new JSONObject(data);
+			return json.getString(key);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@SuppressWarnings("rawtypes")
 	public ArrayList getResultList(String data){

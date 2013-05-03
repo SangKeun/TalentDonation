@@ -9,7 +9,7 @@ public class MessageUtils {
 	public static String SERVER_ADDRESS = "143.248.91.216/test/";
 	
 	public static String REGISTER_TEACHER = "teacher/register/";
-	public static String GET_ALL_MEMBERS = "get_fb_member.php";
+	public static String MAKE_TEACHER = "teacher/match/make/";
 	public static String SET_NEW_TODO = "set_new_todo.php";
 	public static String SET_NEW_CHECK = "set_new_check.php";
 	public static String SET_NEW_POINT = "set_new_point.php";
