@@ -1,13 +1,26 @@
 package com.example.talentdonation;
 
-import android.os.Bundle;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.talentdonation.teacher.WaitingActivity;
+import com.example.talentdonation.utils.CommonValues;
+import com.example.talentdonation.utils.MessageUtils;
 
 public class RegisterActivity extends Activity implements RadioGroup.OnCheckedChangeListener{
 	private EditText et_name, et_age, et_email, et_phone;
@@ -45,14 +58,88 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 				email = et_email.getText().toString();
 				phone = et_phone.getText().toString();
 				
+				
+				/**
+				 * 	Here we have to call "teacher/register/"
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 */
+				
+				/**
+				 * 	after registering to server, add the user information into a sharedpreferences 
+				 * 
+				 * 
+				 */
+				
+				int id = 1; 
+				
+				SharedPreferences prefsUserInfo = getSharedPreferences(CommonValues.prefs_user_info, 0);
+				Editor editor = prefsUserInfo.edit();
+				
+				editor.putInt("id", id);
+				editor.putString("name", name);
+				editor.putString("gender", gender);
+				editor.putInt("age", age);
+				editor.putString("email", email);
+				editor.putString("phone", phone);
+				
+				editor.commit();		// commit to sharedPref
+				
+				// add id to global variables
+				GlobalApplication globalApp = (GlobalApplication)getApplication();
+				globalApp.setTid(id);
+				
 				Toast toast = Toast.makeText(me, "register", Toast.LENGTH_SHORT);
 				toast.show();
 				
-//				Intent intent = new Intent(packageContext, cls)
+				// start waiting activity
+				Intent intent = new Intent(RegisterActivity.this, WaitingActivity.class);
+				startActivity(intent);
 			}
 		});
  		
 		
+	}
+	
+	public void RegisterTeacher(String name, int age, String email, String gender, String phoneNum) {
+		String url = "http://" + MessageUtils.SERVER_ADDRESS + MessageUtils.REGISTER_TEACHER;
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("age", age);
+		params.put("email", email);
+		params.put("gender", gender);
+		params.put("phone", phoneNum);
+		
+		Log.e("URL : ", ""+url);
+		
+		aq.ajax(url, params, JSONObject.class, new AjaxCallback<JSONObject>() {
+
+			@Override
+			public void callback(String url, JSONObject object,	AjaxStatus status) {
+//				Log.e("status", ""+status.getCode());
+//				Log.e("JSON", ""+object);
+				String statusResult = null;
+				try {
+					statusResult = object.getString("status");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				if("success_teacher_register".equals(statusResult)) {
+					Toast.makeText(getApplicationContext(), "등록되었습니다", Toast.LENGTH_LONG).show();
+				} else if("failed_email_duplicated".equals(statusResult)) { 
+					Toast.makeText(getApplicationContext(), "이미 등록된 이메일 입니다.", Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(getApplicationContext(), "등록에 실패했습니다", Toast.LENGTH_LONG).show();
+					Log.e("error", statusResult);
+				}
+				
+			}
+		});
 	}
 
 	@Override

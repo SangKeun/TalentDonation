@@ -6,12 +6,9 @@ package com.example.talentdonation.utils;
  *
  */
 public class MessageUtils {
-
-	public static String FACEBOOK_GRAPH_URL = "http://graph.facebook.com/";
+	public static String SERVER_ADDRESS = "143.248.91.216/test/";
 	
-	public static String SERVER_ADDRESS = "malangstudio.com/bp";
-	
-	public static String SET_NEW_MEMBER = "set_new_member.php";
+	public static String REGISTER_TEACHER = "teacher/register/";
 	public static String GET_ALL_MEMBERS = "get_fb_member.php";
 	public static String SET_NEW_TODO = "set_new_todo.php";
 	public static String SET_NEW_CHECK = "set_new_check.php";
