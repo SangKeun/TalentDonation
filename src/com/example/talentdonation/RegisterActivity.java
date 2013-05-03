@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
 import com.example.talentdonation.teacher.WaitingActivity;
 import com.example.talentdonation.utils.CommonValues;
 import com.example.talentdonation.utils.MessageUtils;
@@ -26,10 +29,11 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 	private EditText et_name, et_age, et_email, et_phone;
 	private RadioGroup rg_gender;
 	
-	private String name, email, phone, gender;
+	private String name, email, phone, gender = "male";
 	private int age;
 	
 	private Activity me;
+	private AQuery aq;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 		setContentView(R.layout.activity_register);
 		
 		me = this;
+		aq = new AQuery(this);		
 		
 		et_name = (EditText)findViewById(R.id.et_name);
 		et_age = (EditText)findViewById(R.id.et_age);
@@ -58,54 +63,45 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 				email = et_email.getText().toString();
 				phone = et_phone.getText().toString();
 				
-				
-				/**
-				 * 	Here we have to call "teacher/register/"
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 */
+				registerTeacher(name, age, email, gender, phone);
 				
 				/**
 				 * 	after registering to server, add the user information into a sharedpreferences 
 				 * 
 				 * 
 				 */
-				
-				int id = 1; 
-				
-				SharedPreferences prefsUserInfo = getSharedPreferences(CommonValues.prefs_user_info, 0);
-				Editor editor = prefsUserInfo.edit();
-				
-				editor.putInt("id", id);
-				editor.putString("name", name);
-				editor.putString("gender", gender);
-				editor.putInt("age", age);
-				editor.putString("email", email);
-				editor.putString("phone", phone);
-				
-				editor.commit();		// commit to sharedPref
-				
-				// add id to global variables
-				GlobalApplication globalApp = (GlobalApplication)getApplication();
-				globalApp.setTid(id);
-				
-				Toast toast = Toast.makeText(me, "register", Toast.LENGTH_SHORT);
-				toast.show();
-				
-				// start waiting activity
-				Intent intent = new Intent(RegisterActivity.this, WaitingActivity.class);
-				startActivity(intent);
 			}
 		});
- 		
+	}
+	
+	protected void handleCallbackResult(int id){
+		
+		SharedPreferences prefsUserInfo = getSharedPreferences(CommonValues.prefs_user_info, 0);
+		Editor editor = prefsUserInfo.edit();
+		
+		editor.putInt("id", id);
+		editor.putString("name", this.name);
+		editor.putString("gender", this.gender);
+		editor.putInt("age", this.age);
+		editor.putString("email", this.email);
+		editor.putString("phone", this.phone);
+		
+		editor.commit();		// commit to sharedPref
+		
+		// add id to global variables
+		GlobalApplication globalApp = (GlobalApplication)getApplication();
+		globalApp.setTid(id);
+		
+		Toast toast = Toast.makeText(me, "register", Toast.LENGTH_SHORT);
+		toast.show();
+		
+		// start waiting activity
+		Intent intent = new Intent(RegisterActivity.this, WaitingActivity.class);
+		startActivity(intent);
 		
 	}
 	
-	public void RegisterTeacher(String name, int age, String email, String gender, String phoneNum) {
+	protected void registerTeacher(String name, int age, String email, String gender, String phoneNum) {
 		String url = "http://" + MessageUtils.SERVER_ADDRESS + MessageUtils.REGISTER_TEACHER;
 		
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -116,6 +112,7 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 		params.put("phone", phoneNum);
 		
 		Log.e("URL : ", ""+url);
+		Log.e("params : ", params.toString());
 		
 		aq.ajax(url, params, JSONObject.class, new AjaxCallback<JSONObject>() {
 
@@ -124,20 +121,24 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 //				Log.e("status", ""+status.getCode());
 //				Log.e("JSON", ""+object);
 				String statusResult = null;
+				
+				Log.e("hello", status.getCode()+"");
 				try {
 					statusResult = object.getString("status");
+
+					if("success_teacher_register".equals(statusResult)) {
+						Toast.makeText(getApplicationContext(), "등록되었습니다", Toast.LENGTH_LONG).show();
+						int id = object.getInt("tid");
+						handleCallbackResult(id);
+					} else if("failed_email_duplicated".equals(statusResult)) { 
+						Toast.makeText(getApplicationContext(), "이미 등록된 이메일 입니다.", Toast.LENGTH_LONG).show();
+					} else {
+						Toast.makeText(getApplicationContext(), "등록에 실패했습니다", Toast.LENGTH_LONG).show();
+						Log.e("error", statusResult);
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				if("success_teacher_register".equals(statusResult)) {
-					Toast.makeText(getApplicationContext(), "등록되었습니다", Toast.LENGTH_LONG).show();
-				} else if("failed_email_duplicated".equals(statusResult)) { 
-					Toast.makeText(getApplicationContext(), "이미 등록된 이메일 입니다.", Toast.LENGTH_LONG).show();
-				} else {
-					Toast.makeText(getApplicationContext(), "등록에 실패했습니다", Toast.LENGTH_LONG).show();
-					Log.e("error", statusResult);
-				}
-				
 			}
 		});
 	}
