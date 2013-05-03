@@ -129,5 +129,15 @@ Seho: Not so good. I’m tired \n
     <string name="hint_email">talent@donation.com</string>
     <string name="hint_phone">010-1004-1004</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="waitingTime">대기 시간 (분)</string>
+    <string-array name="waitingMinutes">
+        <item >5</item>
+        <item >10</item>
+        <item >15</item>
+        <item >20</item>
+        <item >25</item>
+        <item >30</item>
+        
+    </string-array>
 
 </resources>

@@ -34,16 +34,11 @@ public class WaitingActivity extends Activity {
 		
 		waitingTabHost.setCurrentTab(0);
 		
-		TextView tv_guide = (TextView)findViewById(R.id.guidline);
-		tv_guide.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				Intent loading = new Intent(WaitingActivity.this, ScriptLoadingActivity.class);
-				startActivity(loading);
-				return false;
-			}
-		});
+		/* 
+		 * add waiting status to server
+		 * it means that the teacher is waiting to teach
+		 * 
+		 */
 	}
 
 }

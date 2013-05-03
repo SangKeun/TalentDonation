@@ -40,6 +40,14 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		
+		SharedPreferences prefs = getSharedPreferences(CommonValues.prefs_user_info, 0);
+		int id = prefs.getInt("id", -1);
+		
+		if(id != -1){
+			Intent intent = new Intent(RegisterActivity.this, WaitingActivity.class);
+			startActivity(intent);
+		}
+		
 		me = this;
 		aq = new AQuery(this);		
 		
@@ -125,7 +133,7 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 
 					if("success_teacher_register".equals(statusResult)) {
 						Toast.makeText(getApplicationContext(), "등록되었습니다", Toast.LENGTH_LONG).show();
-						int id = object.getInt("tid");
+						int id = object.getJSONObject("teacher").getInt("id");
 						handleCallbackResult(id);
 					} else if("failed_email_duplicated".equals(statusResult)) { 
 						Toast.makeText(getApplicationContext(), "이미 등록된 이메일 입니다.", Toast.LENGTH_LONG).show();
