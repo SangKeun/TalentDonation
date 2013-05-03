@@ -92,9 +92,6 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 		GlobalApplication globalApp = (GlobalApplication)getApplication();
 		globalApp.setTid(id);
 		
-		Toast toast = Toast.makeText(me, "register", Toast.LENGTH_SHORT);
-		toast.show();
-		
 		// start waiting activity
 		Intent intent = new Intent(RegisterActivity.this, WaitingActivity.class);
 		startActivity(intent);
