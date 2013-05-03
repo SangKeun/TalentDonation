@@ -40,7 +40,7 @@
         android:orientation="vertical" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -64,7 +64,7 @@
             android:text="@string/confirm" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/bt_register_confirm"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
