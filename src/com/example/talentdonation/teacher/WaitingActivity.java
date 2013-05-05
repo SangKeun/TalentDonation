@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -64,11 +65,19 @@ public class WaitingActivity extends Activity {
 		Spinner sp_waiting = (Spinner)findViewById(R.id.sp_waiting_time);
 		
 		// handle spinner event
-		sp_waiting.setOnItemClickListener(new OnItemClickListener() {
-			
+		sp_waiting.setOnItemSelectedListener(new OnItemSelectedListener() {
+
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				Log.e("pos", pos + "");
+				Log.e("id", id + "");
 				waitingMinutes = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		
@@ -103,6 +112,9 @@ public class WaitingActivity extends Activity {
 		params.add(new BasicNameValuePair("tid", tid));
 		params.add(new BasicNameValuePair("time", ""+time));
 		
+		Log.e("tid", "" + tid);
+		Log.e("time", "" + time);
+		
 		URI url = null;
 		try {
 			url = URIUtils.createURI("http", MessageUtils.SERVER_ADDRESS, -1, MessageUtils.TEACHER_MATCH_MAKE, URLEncodedUtils.format(params, "UTF-8"), null);
@@ -128,8 +140,7 @@ public class WaitingActivity extends Activity {
 						
 						// handle the response
 						handleMatchMakeResponse(Integer.parseInt(qid));
-					} else if ("failed_teacher_does_not_exists"
-							.equals(statusResult)) {
+					} else if ("failed_teacher_does_not_exists".equals(statusResult)) {
 						Toast.makeText(getApplicationContext(),"선생님이 존재하지 않습니다", Toast.LENGTH_LONG).show();
 					} else {
 						Toast.makeText(getApplicationContext(), "시스템 에러",Toast.LENGTH_LONG).show();

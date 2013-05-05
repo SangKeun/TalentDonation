@@ -98,6 +98,7 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 		
 		// add id to global variables
 		GlobalApplication globalApp = (GlobalApplication)getApplication();
+		Log.e("this is the tid from reg", id + "");
 		globalApp.setTid(id);
 		
 		// start waiting activity
