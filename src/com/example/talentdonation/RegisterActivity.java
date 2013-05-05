@@ -107,7 +107,7 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 	}
 	
 	protected void registerTeacher(String name, int age, String email, String gender, String phoneNum) {
-		String url = "http://" + MessageUtils.SERVER_ADDRESS + MessageUtils.REGISTER_TEACHER;
+		String url = "http://" + MessageUtils.SERVER_ADDRESS + MessageUtils.TEACHER_REGISTER;
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);

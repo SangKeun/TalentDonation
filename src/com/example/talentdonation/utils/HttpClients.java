@@ -51,6 +51,7 @@ public class HttpClients {
 			} else{
 				url = URIUtils.createURI("http", MessageUtils.SERVER_ADDRESS, -1, site, URLEncodedUtils.format(params, "UTF-8"), null);
 			}
+			Log.e("getUrlToJson", ""+url);
 			HttpGet httpGet = new HttpGet(url);
 			HttpResponse getResponse = mHttpClient.execute(httpGet);
 			final int statusCode = getResponse.getStatusLine().getStatusCode();
