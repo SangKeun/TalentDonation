@@ -6,7 +6,16 @@ public class GlobalApplication extends Application{
 	private int tid;		// unique id
 	private int qid;		// matching waiting q id
 	private int mid;		// matching id
+	private String contentsName;
 	
+	public String getContentsName() {
+		return contentsName;
+	}
+
+	public void setContentsName(String contentsName) {
+		this.contentsName = contentsName;
+	}
+
 	public int getTid() {
 		return tid;
 	}
