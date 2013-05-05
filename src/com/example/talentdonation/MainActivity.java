@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 //        teacherMatchMake("123", 20); 	
         teacherMatchJoin("123", "32");
 //        studentRegister("잼잼", 22, "male", "01023232323");
-//        studentMatchFind("2");  //수정중
+        studentMatchFind("2");  
         
         
 //        startActivity(new Intent(this, FullScriptActivity.class));
@@ -251,16 +251,22 @@ public class MainActivity extends Activity {
 	/**
 	 * 
 	 * @param sid
+	 * match_id loaded
 	 */
 	public void studentMatchFind(String sid) {
-		String url = "http://" + MessageUtils.SERVER_ADDRESS + MessageUtils.STUDENT_MATCH_FIND;
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("tid", sid));
 		
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("sid", sid);
+		URI url = null;
+		try {
+			url = URIUtils.createURI("http", MessageUtils.SERVER_ADDRESS, -1, MessageUtils.STUDENT_MATCH_FIND, URLEncodedUtils.format(params, "UTF-8"), null);
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		}
 		
 		Log.e("URL : ", ""+url);
 		
-		aq.ajax(url, params, JSONObject.class, new AjaxCallback<JSONObject>() {
+		aq.ajax(""+url, JSONObject.class, new AjaxCallback<JSONObject>() {
 
 			@Override
 			public void callback(String url, JSONObject object,	AjaxStatus status) {
@@ -272,6 +278,8 @@ public class MainActivity extends Activity {
 
 					if ("success_student_match_find".equals(statusResult)) {
 						Toast.makeText(getApplicationContext(), "매치되었습니다",Toast.LENGTH_LONG).show();
+						String matchId = object.getString("match_id");
+						// handlecallback()
 					} else if("failed_student_does_not_exists".equals(statusResult)) {
 						Toast.makeText(getApplicationContext(), "학생 계정이 존재하지 않습니다",Toast.LENGTH_LONG).show();
 					} else if("failed_no_teacher_to_match".equals(statusResult)) {

@@ -6,21 +6,21 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/bt_register_confirm"
+        android:id="@+id/btSelectEasy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Easy" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btSelectNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Normal" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btSelectHard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
