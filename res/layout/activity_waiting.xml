@@ -68,8 +68,14 @@
             android:text="@string/waitingTime"
             android:textSize="20sp" />
 
+        <ProgressBar
+            android:id="@+id/probar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/sp_waiting_time"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -77,7 +83,7 @@
             android:gravity="center"/>
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/bt_waiting_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/confirm" />

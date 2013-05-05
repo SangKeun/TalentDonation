@@ -1,15 +1,14 @@
 package com.example.talentdonation.teacher;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TabHost;
-import android.widget.TextView;
 
+import com.example.talentdonation.GlobalApplication;
 import com.example.talentdonation.R;
 
 public class WaitingActivity extends Activity {
@@ -34,11 +33,32 @@ public class WaitingActivity extends Activity {
 		
 		waitingTabHost.setCurrentTab(0);
 		
-		/* 
-		 * add waiting status to server
-		 * it means that the teacher is waiting to teach
-		 * 
-		 */
+		
+		
+		Button btn_confirm = (Button)findViewById(R.id.bt_waiting_time);
+		Spinner sp_waiting = (Spinner)findViewById(R.id.sp_waiting_time);
+		
+		btn_confirm.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				/* 
+				 * add waiting status to server
+				 * it means that the teacher is waiting to teach
+				 * 
+				 */
+				ProgressBar probar = (ProgressBar)findViewById(R.id.probar_loading);
+				probar.setVisibility(View.VISIBLE);
+	//			handleResponse(1);
+			}
+		});
 	}
-
+	
+	private void handleResponse(int queueId){
+		GlobalApplication globalApp = (GlobalApplication)getApplication();
+		globalApp.setQid(queueId);
+		
+		
+	}
 }
