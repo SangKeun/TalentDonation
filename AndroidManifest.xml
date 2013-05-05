@@ -26,11 +26,11 @@
         <activity
             android:name="com.example.talentdonation.student.SelectActivity"
             android:label="난이도 선택" >
-            <intent-filter>
+<!--             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> -->
         </activity>
         <activity
             android:name="com.example.talentdonation.FullScriptActivity"
@@ -51,6 +51,10 @@
         <activity
             android:name="com.example.talentdonation.teacher.TeachingActivity"
             android:label="수업(선생)" >
+<!-- 			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
         </activity>
         <activity
             android:name="com.example.talentdonation.teacher.WaitingActivity"
@@ -59,11 +63,11 @@
         <activity
             android:name="com.example.talentdonation.RegisterActivity"
             android:label="@string/title_activity_register" >
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--             </intent-filter> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
         </activity>
         <activity
             android:name="com.example.talentdonation.LoginActivity"

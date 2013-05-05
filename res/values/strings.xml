@@ -16,6 +16,93 @@
     <string name="play">Play</string>
     <string name="onoff">student script on off</string>
     <string name="representation">표현 교육</string>
+    
+    <string-array name="guide_titles">
+        <item >ice breaking(1분)</item>
+        <item >listening(1분)</item>
+        <item >표현 교육(2분)</item>
+        <item >shadowing(1분)</item>
+        <item >conversation(1분)</item>
+        <item >good bye 인사(1분)</item>
+    </string-array>
+    
+    <string-array name="guide_contents">
+        <item >
+간단한 인사를 합니다.\n
+선생님의 이름부터 먼저 소개를 해 보세요.\n
+학생의 이름도 물어봐 주세요.\n
+아이들이 무엇을 좋아하는지, 요즘 어떻게 지내는지를 물어보세요.\n
+학생이 좋은 관심을 받고 있다고 느껴지게끔 관심을 보인 반응해주세요.
+		</item>
+        <item >
+아이들에게 다이얼로그를 들려줍니다.\n 
+상황에 따라서 두 번 정도 들려줘도 괜찮습니다.\n
+듣기가 끝나고 어떤 내용인지 물어보세요.            
+        </item>
+        <item >
+아래와 같은 내용 위주로 표현을 교육해 주세요.\n
+중심표현과 관련 표현을 함께 가르쳐 주세요.\n            
+        </item>
+        <item >
+한 문장 씩 들으면 학생이 따라하게 하는 단계입니다.\n 
+한 문장에 두 세 번 반복 해주도록 합니다.\n
+* 학생에게 칭찬을 많이 해 주세요!            
+        </item>
+        <item >
+A 와 B 역할을 나눠서 대화해 봅니다.\n 
+서로 역할도 바꿔서 해보세요.\n
+이 때 dialogue 에 이름이 나온다면 서로의 이름으로 바꾸어 해보세요.            
+        </item>
+        <item >
+수업이 마치고 인사하는 단계입니다.\n
+많이 칭찬해 주시고, 동기 부여가 될 수 있는 말들로 마무리 해주세요.\n            
+        </item>
+    </string-array>      
+    
+    <string name="step1_title">ice breaking(1분)</string>
+    <string name="step1">
+간단한 인사를 합니다.\n
+선생님의 이름부터 먼저 소개를 해 보세요.\n
+학생의 이름도 물어봐 주세요.\n
+아이들이 무엇을 좋아하는지, 요즘 어떻게 지내는지를 물어보세요.\n
+학생이 좋은 관심을 받고 있다고 느껴지게끔 관심을 보인 반응해주세요.
+    </string>
+    
+    <string name="step2_title">listening(1분)</string>
+    <string name="step2">
+아이들에게 다이얼로그를 들려줍니다.\n 
+상황에 따라서 두 번 정도 들려줘도 괜찮습니다.\n
+듣기가 끝나고 어떤 내용인지 물어보세요.    
+    </string>
+    
+    <string name="step3_title">표현 교육(2분)</string>
+    <string name="step3">
+아래와 같은 내용 위주로 표현을 교육해 주세요.\n
+중심표현과 관련 표현을 함께 가르쳐 주세요.\n
+    </string>
+    
+    <string name="step4_title">shadowing(1분)</string>
+    <string name="step4">
+한 문장 씩 들으면 학생이 따라하게 하는 단계입니다.\n 
+한 문장에 두 세 번 반복 해주도록 합니다.\n
+* 학생에게 칭찬을 많이 해 주세요!
+    </string>
+    
+    <string name="step5_title">conversation(1분)</string>
+    <string name="step5">
+A 와 B 역할을 나눠서 대화해 봅니다.\n 
+서로 역할도 바꿔서 해보세요.\n
+이 때 dialogue 에 이름이 나온다면 서로의 이름으로 바꾸어 해보세요.        
+    </string>
+    
+    <string name="step6_title">good bye 인사(1분)</string>
+    <string name="step6">
+수업이 마치고 인사하는 단계입니다.\n
+많이 칭찬해 주시고, 동기 부여가 될 수 있는 말들로 마무리 해주세요.\n
+    </string>
+    
+    
+    
     <string name="representation_content">주요 표현을 가르쳐 줍니다.\n
 How’s it going?은 안부를 묻는 표현입니다.\n
 How are you? 라고도 말할 수 있어요.\n
@@ -139,5 +226,8 @@ Seho: Not so good. I’m tired \n
         <item >30</item>
         
     </string-array>
+    <string name="next">다음 단계</string>
+    <string name="bar_contents">Contents</string>
+    <string name="bar_guideline">Guideline</string>
 
 </resources>

@@ -46,6 +46,7 @@ public class RegisterActivity extends Activity implements RadioGroup.OnCheckedCh
 		if(id != -1){
 			Intent intent = new Intent(RegisterActivity.this, WaitingActivity.class);
 			startActivity(intent);
+			finish();
 		}
 		
 		me = this;

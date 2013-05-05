@@ -8,6 +8,30 @@ public class Script{
 	public List<String> Descriptions;
 	public List<Expression> Expressions;
 	
+	public List<Statement> getStatements() {
+		return Statements;
+	}
+
+	public void setStatements(List<Statement> statements) {
+		Statements = statements;
+	}
+
+	public List<String> getDescriptions() {
+		return Descriptions;
+	}
+
+	public void setDescriptions(List<String> descriptions) {
+		Descriptions = descriptions;
+	}
+
+	public List<Expression> getExpressions() {
+		return Expressions;
+	}
+
+	public void setExpressions(List<Expression> expressions) {
+		Expressions = expressions;
+	}
+
 	public Script(){
 		Statements = new ArrayList<Statement>();
 		Descriptions = new ArrayList<String>();
@@ -37,6 +61,22 @@ public class Script{
 			r += s.toString() + "\r\n";
 		}
 		r += "표현\r\n";
+		for(Expression s : Expressions){
+			r += s.toString() + "\r\n";
+		}
+		return r;
+	}
+	
+	public String toStringDescriptions(){
+		String r = "";
+		for(String s : Descriptions){
+			r += s.toString() + "\r\n";
+		}
+		return r;
+	}
+	
+	public String toStringExpressions(){
+		String r = "";
 		for(Expression s : Expressions){
 			r += s.toString() + "\r\n";
 		}
