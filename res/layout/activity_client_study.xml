@@ -3,63 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/listenAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="전체듣기" />
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/studentStudyListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:id="@+id/iv_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/example"
-            tools:ignore="ContentDescription" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:orientation="vertical" >
-        
-        <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:orientation="horizontal" >
-            <TextView
-	            android:id="@+id/tv_a"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="A : " />
-	        <TextView
-	            android:id="@+id/tv_a_script"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="Have a nice day, Jimin" />
-        </LinearLayout>
-        
-        <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:orientation="horizontal" >
-	        
-	        <TextView
-	            android:id="@+id/tv_b"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="B : " />
-	
-	        <TextView
-	            android:id="@+id/tv_b_script"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="You too, Mom. See you later" />
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

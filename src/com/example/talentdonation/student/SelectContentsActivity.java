@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.example.talentdonation.GlobalApplication;
 import com.example.talentdonation.R;
 import com.example.talentdonation.contentsmanager.ContentManager;
 import com.example.talentdonation.utils.MessageUtils;
@@ -39,6 +40,8 @@ public class SelectContentsActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.select_contents);
+		
+		//수업 content 다루는 manager
 		contentManager = new ContentManager();
 		contentManager.ParseContentCSV();
 		
@@ -99,6 +102,10 @@ public class SelectContentsActivity extends Activity{
 			Toast.makeText(getApplicationContext(), s.toString(), Toast.LENGTH_LONG).show();
 			
 			studentMatchFind("4", "" + position); //실제로 자신의 student id 가져와야됨
+			
+			//나중에 해당 컨텐츠 재생을위해 pos저장
+			GlobalApplication var = (GlobalApplication)getApplication();
+			var.setPosition(position);
 		}
 		
 	};
@@ -136,9 +143,11 @@ public class SelectContentsActivity extends Activity{
 						Toast.makeText(getApplicationContext(), "매치되었습니다",Toast.LENGTH_LONG).show();
 						String matchId = object.getString("match_id");
 						// handlecallback()  //match id 프리퍼런스에 저장하기
-						String phoneNum = object.getString("phone");
-						Log.e("teacher phone:", phoneNum);
 						
+						//선생님한테 전화하기
+						JSONObject tmp = object.getJSONObject("teacher");
+						String phoneNum = tmp.getString("phone");
+						Log.e("teacher phone:", phoneNum);
 						String uri = "tel:" + phoneNum.trim();
 						Intent intent = new Intent(Intent.ACTION_CALL);
 						intent.setData(Uri.parse(uri));
@@ -147,6 +156,7 @@ public class SelectContentsActivity extends Activity{
 						Toast.makeText(getApplicationContext(), "학생 계정이 존재하지 않습니다",Toast.LENGTH_LONG).show();
 					} else if("failed_no_teacher_to_match".equals(statusResult)) {
 						Toast.makeText(getApplicationContext(), "선생님을 찾지 못했습니다",Toast.LENGTH_LONG).show();
+						startActivity(new Intent(SelectContentsActivity.this, ClientStudyActivity.class));
 					} else {
 						Toast.makeText(getApplicationContext(), "시스템 에러",Toast.LENGTH_LONG).show();
 						Log.e("error", statusResult);
