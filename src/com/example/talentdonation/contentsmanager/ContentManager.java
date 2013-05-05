@@ -91,6 +91,16 @@ public class ContentManager {
 	public Script GetScript(String name){
 		return Lessons.get(name).GetScript();
 	}
+	
+	public String getMp3Name(int index) {
+		SortedSet<String> keys = new TreeSet<String>(Lessons.keySet());		
+		for (String key : keys) {
+			if(index == 0)
+				return key;
+			index--;
+		}
+		return null;
+	}
 
 	
 	public void test(){

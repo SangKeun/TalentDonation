@@ -49,6 +49,14 @@ public class Script{
 	public void AddExpression(Expression e){
 		Expressions.add(e);
 	}
+	
+	public List<String> getStatement() {
+		List<String> result = new ArrayList<String>();
+		for(Statement s : Statements) {
+			result.add(s.toString());
+		}
+		return null;
+	}
 
 	@Override
 	public String toString(){

@@ -6,6 +6,7 @@ public class GlobalApplication extends Application{
 	private int tid;		// unique id
 	private int qid;		// matching waiting q id
 	private int mid;		// matching id
+	private int position;	//content position index
 	private String contentsName;
 	
 	public String getContentsName() {
@@ -38,5 +39,13 @@ public class GlobalApplication extends Application{
 	
 	public void setMid(int mid) {
 		this.mid = mid;
+	}
+
+	public final int getPosition() {
+		return position;
+	}
+
+	public final void setPosition(int position) {
+		this.position = position;
 	}	
 }

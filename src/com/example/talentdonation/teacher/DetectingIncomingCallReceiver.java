@@ -15,6 +15,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.example.talentdonation.GlobalApplication;
+import com.example.talentdonation.student.ClientStudyActivity;
 import com.example.talentdonation.utils.MessageUtils;
 
 import android.content.BroadcastReceiver;
@@ -55,11 +56,20 @@ public class DetectingIncomingCallReceiver extends BroadcastReceiver{
 		            case TelephonyManager.CALL_STATE_OFFHOOK:
 		            	Log.e("DetectingIncomingCallReceiver :", "call activity");
 		            	
+		            	//preference에서 자신이 학생인지 선생인지 가져오는게 필요, 컨텐츠
+		            	
+		            	/**
+		            	 * 선생쪽
+		            	 
 		            	GlobalApplication application = (GlobalApplication)brContext.getApplicationContext();
 		            	String tid = "" + application.getTid();
 		            	String qid = "" + application.getQid();
 		            	teacherMatchJoin(tid, qid);
+		            	*/
 		            	
+		    			Intent intent = new Intent(brContext, ClientStudyActivity.class);
+		            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		            	brContext.startActivity(intent);
 		            	
 		            	
 		            	
