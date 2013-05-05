@@ -44,11 +44,6 @@ public class SelectContentsActivity extends Activity{
 		
 		aq = new AQuery(this);
 		
-		String uri = "tel:" + "01051729171".trim();
-		Intent intent1 = new Intent(Intent.ACTION_CALL);
-		intent1.setData(Uri.parse(uri));
-		startActivity(intent1);
-		
 		//List view setting
 		ListView contentListView = (ListView) findViewById(R.id.contentsListView);
 		contentListView.setOnItemClickListener(listViewClickListener);
